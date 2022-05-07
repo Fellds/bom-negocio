@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    @apply text-gray-700 bg-gray-50 tracking-tight 
+}
+
+.border-default {
+    @apply border border-slate-200 border-solid rounded
+}
+
+.button {
+    @apply bg-lime-600 text-white px-4 py-2 hover:bg-lime-700 transition rounded-lg
+}
