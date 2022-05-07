@@ -64,10 +64,15 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @default(now())
+  deleted_at    DateTime?
 
   accounts    Account[]
   sessions    Session[]
   classifieds Classified[]
+
+
 
   @@map("users")
 }
@@ -83,7 +88,7 @@ model VerificationToken {
 }
 
 model Classified {
-  id             String        @id @default(cuid()) @map("_id") @db.ObjectId
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
   title          String
   price          Int           @default(0)
   categoryId     String        @map("category_id") @db.ObjectId
@@ -104,11 +109,12 @@ model Classified {
 
 model Category {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  title      String
+  name       String
   slug       String
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now())
   deleted_at DateTime?
 
   classifieds Classified[]
+  @@map("categories")
 }

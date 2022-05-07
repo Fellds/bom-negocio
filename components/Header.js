@@ -19,7 +19,7 @@ function Header() {
                 <nav>
                     <ul className="flex gap-4 font-bold">
                         <li><Link href="/"><a className={router.pathname == "/" ? "text-lime-600" : ""}>anúncios</a></Link></li>
-                        <li><Link href="/anuncios/novo"><a className={router.pathname == "/anuncios/novo" ? "text-lime-600" : ""}>criar anúncio</a></Link></li>
+                        <li><Link href="/classifieds/create"><a className={router.pathname == "/classifieds/create" ? "text-lime-600" : ""}>criar anúncio</a></Link></li>
                         {!session && status != 'loading' && (
                             <a onClick={() => signIn()}>entrar</a>
                         )}
