@@ -20,17 +20,17 @@ function Header() {
                     <ul className="flex gap-4 font-bold">
                         <li><Link href="/"><a className={router.pathname == "/" ? "text-lime-600" : ""}>anúncios</a></Link></li>
                         <li><Link href="/classifieds/create"><a className={router.pathname == "/classifieds/create" ? "text-lime-600" : ""}>criar anúncio</a></Link></li>
+                        {!session && status == 'loading' && (
+                            <li><a>...</a></li>
+                        )}
                         {!session && status != 'loading' && (
-                            <a onClick={() => signIn()}>entrar</a>
+                            <li><a onClick={() => signIn()}>entrar</a></li>
                         )}
                         {session && (
                             <>
-                                <Link href="/">
-                                    <a className='lowercase'>{ session.user.name }</a>
-                                </Link>
-                                <Link href="/">
-                                    <a onClick={() => signOut()}>sair</a>
-                                </Link>
+                                <li><Link href="/classifieds"><a className={router.pathname == "/classifieds" ? "text-lime-600" : ""}>meus classificados</a></Link></li>
+                                <li><Link href="/"><a className='lowercase'>{session.user.name}</a></Link></li>
+                                <li><Link href="/"><a onClick={() => signOut()}>sair</a></Link></li>
                             </>
                         )}
                     </ul>

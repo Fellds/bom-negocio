@@ -23,7 +23,7 @@ async function createClassified(req, res) {
   const classified = await prisma.classified.create({
     data: {
       title: req.body.title,
-      price: parseInt(req.body.price),
+      price: req.body.price * 100, //format to cents
       categoryId: req.body.category,
       description: req.body.description,
       userId: user?.id,
@@ -34,11 +34,16 @@ async function createClassified(req, res) {
     return res.status(500).json({ error: 'something gone wrong' })
   }
 
+  if (req.body.submitButton == 'pay') {
+    return res.status(200).json('paga')
+  }
+
   return res.status(200).json(classified)
 };
 
-
-
+async function createPreference() {
+  
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {

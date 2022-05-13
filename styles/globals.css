@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 html {
-    @apply text-gray-700 bg-gray-50 tracking-tight 
+    @apply text-gray-700 bg-gray-100 tracking-tight
+}
+
+* {
+    @apply focus:outline-lime-600
 }
 
 .border-default {
@@ -12,4 +16,18 @@ html {
 
 .button {
     @apply bg-lime-600 text-white px-4 py-2 hover:bg-lime-700 transition rounded-lg
+}
+
+.form-group {
+    @apply block mb-4
+}
+
+.form-group span{
+    @apply font-bold block mb-2 text-gray-500
+}
+
+.form-group input, 
+.form-group select,
+.form-group textarea {
+    @apply w-full p-1 resize-none rounded-sm outline outline-gray-200 outline-2 focus:outline-lime-600
 }
