@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react';
-import { useState } from 'react'
 
 const Novo: NextPage = ({ classifieds, error }: any) => {
   return (

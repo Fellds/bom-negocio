@@ -53,15 +53,16 @@ const Novo: NextPage = ({ categories }: any) => {
             }}>
               <label className="form-group">
                 <span>Título</span>
-                <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Uma breve descrição" />
+                <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Uma breve descrição" required />
               </label>
               <label className="form-group">
                 <span>Preço</span>
-                <input onChange={(e) => setPrice(e.target.value)} type="number" step="0.01" min="0" max="21474835" name="price" placeholder="R$ 200,00" />
+                <input onChange={(e) => setPrice(e.target.value)} type="number" step="0.01" min="0" max="21474835" name="price" placeholder="R$ 200,00" required />
               </label>
               <label className="form-group">
                 <span>Categoria</span>
-                <select onChange={(e) => setCategory(e.target.value)} name="category">
+                <select onChange={(e) => setCategory(e.target.value)} name="category" required >
+                  <option value="">Selecione uma categoria</option>
                   {categories.map((category: any) => (
                     <option key={category.id} value={category.id}>{category.name}</option>
                   ))}
@@ -69,15 +70,15 @@ const Novo: NextPage = ({ categories }: any) => {
               </label>
               <label className="form-group">
                 <span>Descrição do produto</span>
-                <textarea onChange={(e) => setDescription(e.target.value)} rows={5} name="description" placeholder="Descrição completa do produto"></textarea>
+                <textarea onChange={(e) => setDescription(e.target.value)} rows={5} name="description" placeholder="Descrição completa do produto" required ></textarea>
               </label>
               <label className="form-group">
                 <span>Telefone de contato</span>
-                <input maxLength={11} onChange={(e) => setTelephone(e.target.value)} type="text" name="telephone" />
+                <input maxLength={11} onChange={(e) => setTelephone(e.target.value)} type="text" name="telephone" placeholder="42998334432" required />
               </label>
               <div className="flex justify-between">
                 <button type="submit" onClick={() => setSubmitButton('draft')} className="text-gray-500 hover:text-gray-700 cursor-pointer">salvar como rascunho</button>
-                <button type="submit" onClick={() => setSubmitButton('pay')} className="button">salvar e fazer pagamento</button>
+                <button type="submit" onClick={() => setSubmitButton('pay')} className="button">Fazer pagamento e anúnciar</button>
               </div>
             </form>
           </div>
