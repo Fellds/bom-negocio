@@ -9,6 +9,7 @@ const Novo: NextPage = ({ categories }: any) => {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [telephone, setTelephone] = useState('');
   const [submitButton, setSubmitButton] = useState('');
 
   if (!session && status != 'loading') {
@@ -29,10 +30,14 @@ const Novo: NextPage = ({ categories }: any) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ title, price, category, description, submitButton })
-    }).then(function (response) {
-      console.log(response)
-    })
+      body: JSON.stringify({ title, price, category, description, telephone, submitButton })
+    }).then(response => response.json())
+      .then(json => {
+        if (json.error == false) {
+          window.open(json.data.payment_url, '_blank')?.focus()
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -48,11 +53,11 @@ const Novo: NextPage = ({ categories }: any) => {
             }}>
               <label className="form-group">
                 <span>Título</span>
-                <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" />
+                <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" placeholder="Uma breve descrição" />
               </label>
               <label className="form-group">
                 <span>Preço</span>
-                <input onChange={(e) => setPrice(e.target.value)} type="number" step="0.01" min="0" max="21474835" name="price" />
+                <input onChange={(e) => setPrice(e.target.value)} type="number" step="0.01" min="0" max="21474835" name="price" placeholder="R$ 200,00" />
               </label>
               <label className="form-group">
                 <span>Categoria</span>
@@ -63,8 +68,12 @@ const Novo: NextPage = ({ categories }: any) => {
                 </select>
               </label>
               <label className="form-group">
-                <span>Descrição</span>
-                <textarea onChange={(e) => setDescription(e.target.value)} rows={5} name="description"></textarea>
+                <span>Descrição do produto</span>
+                <textarea onChange={(e) => setDescription(e.target.value)} rows={5} name="description" placeholder="Descrição completa do produto"></textarea>
+              </label>
+              <label className="form-group">
+                <span>Telefone de contato</span>
+                <input maxLength={11} onChange={(e) => setTelephone(e.target.value)} type="text" name="telephone" />
               </label>
               <div className="flex justify-between">
                 <button type="submit" onClick={() => setSubmitButton('draft')} className="text-gray-500 hover:text-gray-700 cursor-pointer">salvar como rascunho</button>
@@ -72,7 +81,6 @@ const Novo: NextPage = ({ categories }: any) => {
               </div>
             </form>
           </div>
-
         </div>
 
       </section>

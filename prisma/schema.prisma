@@ -93,6 +93,7 @@ model Classified {
   price          Int           @default(0)
   categoryId     String        @map("category_id") @db.ObjectId
   description    String
+  telephone      String
   // images
   userId         String        @map("user_id") @db.ObjectId
   payment_status PaymentStatus @default(pending)
